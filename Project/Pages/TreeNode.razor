@@ -1,0 +1,28 @@
+﻿
+<span @onclick="AddChild">@Text</span>
+<ul>
+    @{ 
+        foreach(string child in children)
+            {
+                <li>
+                    <TreeNode Text="@child"></TreeNode>
+                </li>
+            }
+    }
+</ul>
+
+@code {
+
+    [Parameter]
+    public string Text { get; set; }
+
+    private List<String> children = new List<string>();
+
+    private void AddChild()
+    {
+        int childrenCount = children.Count;
+
+        children.Add(string.Format("{0}.Child{1}", Text, childrenCount));
+    }
+
+}
